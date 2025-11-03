@@ -282,7 +282,7 @@ const deleteSN = async (snToDelete: string) => {
                         error={value !== "" && !isFutureDateDDMMYYYY(value)}
                         helperText={
                           value === ""
-                            ? "พิมพ์ตัวเลขติดกันได้ (25122025 → 25/12/2025)"
+                            ? ""
                             : isFutureDateDDMMYYYY(value)
                             ? "รูปแบบถูกต้อง"
                             : "รูปแบบหรือค่าวัน/เดือนไม่ถูกต้อง"
@@ -345,7 +345,7 @@ const deleteSN = async (snToDelete: string) => {
                         error={value !== "" && !isFutureDateDDMMYYYY(value)}
                         helperText={
                           value === ""
-                            ? "พิมพ์ตัวเลขติดกันได้ (25122025 → 25/12/2025)"
+                            ? ""
                             : isFutureDateDDMMYYYY(value)
                             ? "รูปแบบถูกต้อง"
                             : "รูปแบบหรือค่าวัน/เดือนไม่ถูกต้อง"
