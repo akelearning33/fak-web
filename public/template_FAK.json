@@ -1,0 +1,200 @@
+{
+  "template": {
+    "MEDICATION": [
+      {
+        "ITEM": 5,
+        "DESCRIPTION": "Anti-diarrheal (Diarrhea) : Activated charcoal",
+        "QTY": 10,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 6,
+        "DESCRIPTION": "Anti-gastric/heartburn : Antacid chewable tablets (Antacil®)",
+        "QTY": 10,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 7,
+        "DESCRIPTION": "*Antiemetic (vomit) : Domperidone 10mg - Adult",
+        "QTY": 10,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 8,
+        "DESCRIPTION": "*Antiemetic (vomit) : Domperidone Syrup 5mg - Child",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      },
+      {
+        "ITEM": 9,
+        "DESCRIPTION": "**Anti-motion sickness : Dimenhydrinate 50mg",
+        "QTY": 10,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 10,
+        "DESCRIPTION": "**ENO (Sodium Bicarbonate)",
+        "QTY": 5,
+        "UNIT": "SACHET"
+      },
+      {
+        "ITEM": 11,
+        "DESCRIPTION": "Eye irrigator",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      },
+      {
+        "ITEM": 12,
+        "DESCRIPTION": "Nasal Dedongestant : CPM + Phenylephrine Sulidine®",
+        "QTY": 4,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 13,
+        "DESCRIPTION": "*Non-sedative antihistamine (Allergies) : Loratadine 10mg - Adult",
+        "QTY": 10,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 14,
+        "DESCRIPTION": "*Non-sedative antihistamine (Allergies) : Certirizine Syrup 5mg - Child",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      },
+      {
+        "ITEM": 15,
+        "DESCRIPTION": "**Oral Rehydration Salt (ORS) : Oreda®",
+        "QTY": 5,
+        "UNIT": "SACHET"
+      },
+      {
+        "ITEM": 16,
+        "DESCRIPTION": "Simple analgesic : Paracetamol 500mg - Adult",
+        "QTY": 10,
+        "UNIT": "TABLET"
+      },
+      {
+        "ITEM": 17,
+        "DESCRIPTION": "Simple analgesic : Paracetamol 120mg/5ml - Child",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      },
+      {
+        "ITEM": 18,
+        "DESCRIPTION": "**Vapex solution",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      }
+    ],
+    "EQUIPMENT": [
+      {
+        "ITEM": 19,
+        "DESCRIPTION": "Adhesive dressing strips : Tensoplast assorted 3 size",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 20,
+        "DESCRIPTION": "Adhesive Tape : Transpore 2.5cm x 1.5m",
+        "QTY": 1,
+        "UNIT": "ROLL"
+      },
+      {
+        "ITEM": 21,
+        "DESCRIPTION": "Adhesive wound closure 2 sizes; 3.8x3.8cm, 6x7cm",
+        "QTY": 4,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 22,
+        "DESCRIPTION": "**Alcohol pad",
+        "QTY": 10,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 23,
+        "DESCRIPTION": "Antiseptic wound cleaner : Betadine solution",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      },
+      {
+        "ITEM": 24,
+        "DESCRIPTION": "Bandage : Guaze roll 3\" + Triangular bandage",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 25,
+        "DESCRIPTION": "Burn dressing : Burn gel 10x10cm",
+        "QTY": 2,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 26,
+        "DESCRIPTION": "Biohazard waste bag 18x20\"",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 27,
+        "DESCRIPTION": "**Cotton wool",
+        "QTY": 1,
+        "UNIT": "PACK"
+      },
+      {
+        "ITEM": 28,
+        "DESCRIPTION": "CPR Pocket mask with one-way valve",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 29,
+        "DESCRIPTION": "Disposable Gloves",
+        "QTY": 3,
+        "UNIT": "PAIR"
+      },
+      {
+        "ITEM": 30,
+        "DESCRIPTION": "Elastic bandage 7.5cm x 4.5m",
+        "QTY": 1,
+        "UNIT": "ROLL"
+      },
+      {
+        "ITEM": 31,
+        "DESCRIPTION": "Safety pins",
+        "QTY": 10,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 32,
+        "DESCRIPTION": "Scissor",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 33,
+        "DESCRIPTION": "Surgical mask",
+        "QTY": 5,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 34,
+        "DESCRIPTION": "Thermometers (non-mercury)",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 35,
+        "DESCRIPTION": "Tweezer",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 36,
+        "DESCRIPTION": "Wound dressing : Gauze pad 2 size; 3x3\", 4x4\"",
+        "QTY": 1,
+        "UNIT": "SET"
+      }
+    ]
+  }
+}
