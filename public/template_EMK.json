@@ -1,0 +1,320 @@
+{
+  "template": {
+    "EQUIPMENT": [
+      {
+        "ITEM": 5,
+        "DESCRIPTION": "Airway Oropharyngeal disposable No.7x1, 8x1, 9x1",
+        "QTY": 3,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 6,
+        "DESCRIPTION": "Bag-Valve Mask Adult+Pediatric+Newborn+HEPA filter+ Oxygen canular Adult+Child",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 7,
+        "DESCRIPTION": "Biohazard waste bag 18x20",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 8,
+        "DESCRIPTION": "Flashlight and Batteries",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 9,
+        "DESCRIPTION": "Forceps, Needle holder, Braided silk 3.0 & 5.0 + Braider & Needle holder",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 10,
+        "DESCRIPTION": "Glove Sterile No.7, No.8",
+        "QTY": 2,
+        "UNIT": "PAIR"
+      },
+      {
+        "ITEM": 11,
+        "DESCRIPTION": "Gluclose blood testing kit + Strips 10 + Needle 10",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 12,
+        "DESCRIPTION": "Hand Cleanser : Alcohol Gel 1 + Alcohol Pads 10 + Disposable glove 3",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 13,
+        "DESCRIPTION": "Intravenous Catheters No.20x2, 22x2, 24x2 + IV Canular 3",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 14,
+        "DESCRIPTION": "Kit Simple Needle Decompression pneumothorax I.V. cath No.14",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 15,
+        "DESCRIPTION": "Needles No.21x5, 24x5",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 16,
+        "DESCRIPTION": "Needles Disposal Box",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 17,
+        "DESCRIPTION": "Pair of Scissors",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 18,
+        "DESCRIPTION": "Pulse Oximeters and Batteries",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 19,
+        "DESCRIPTION": "Sphygmomanometer",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 20,
+        "DESCRIPTION": "Sponge Gauze 3x3 + Tape Adhesive Transpore 1",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 21,
+        "DESCRIPTION": "Stethoscope",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 22,
+        "DESCRIPTION": "Surgical Mask 5",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 23,
+        "DESCRIPTION": "Syringe Ball",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 24,
+        "DESCRIPTION": "Syringes Sterile Disposable 10ml x4, 3ml x4",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 25,
+        "DESCRIPTION": "System for Delivering intravenous fluids",
+        "QTY": 3,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 26,
+        "DESCRIPTION": "Thermometers non-mercury",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 27,
+        "DESCRIPTION": "Urinary Catheter No.14",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 28,
+        "DESCRIPTION": "Basic delivery kit including sterile umbilical cord scissors and pair of cord clamps",
+        "QTY": 1,
+        "UNIT": "SET"
+      },
+      {
+        "ITEM": 29,
+        "DESCRIPTION": "Vial cutter or ampule cutter",
+        "QTY": 1,
+        "UNIT": "EA"
+      },
+      {
+        "ITEM": 30,
+        "DESCRIPTION": "Venous Tourniquet",
+        "QTY": 1,
+        "UNIT": "EA"
+      }
+    ],
+    "INJECTION": [
+      {
+        "ITEM": 31,
+        "DESCRIPTION": "Adrenocortical Steroid : Dexamethasone 4mg/ml",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 32,
+        "DESCRIPTION": "Antibiotics : Lincomycin HCL 300mg",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 33,
+        "DESCRIPTION": "Antiemetic : Dimenhydrinate Dramamine 50mg/ml",
+        "QTY": 4,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 34,
+        "DESCRIPTION": "Antiemetic : Metoclopramide Plasil 10mg/2ml",
+        "QTY": 4,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 35,
+        "DESCRIPTION": "Antihistamine : Chlorpheniramine Maleate 10mg/ml",
+        "QTY": 4,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 36,
+        "DESCRIPTION": "Atropine Sulfate 0.6mg/ml",
+        "QTY": 4,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 37,
+        "DESCRIPTION": "Bronchial dilator : Terbutaline Bricanyl 0.5mg/ml",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 38,
+        "DESCRIPTION": "Dextrose 50% : Glucose 50% 20ml",
+        "QTY": 4,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 39,
+        "DESCRIPTION": "Diuretic : Lasix 10mg/ml, 2ml",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 40,
+        "DESCRIPTION": "Epinephrine : Adrenaline 1mg/ml 1:1000",
+        "QTY": 4,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 41,
+        "DESCRIPTION": "Hyoscine : Buscopan 20mg/ml",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 42,
+        "DESCRIPTION": "Major Analgesic : Tramadol HCL 50mg",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 43,
+        "DESCRIPTION": "Medication for postpartum bleeding : Oxytocin 10mg/ml, 2ml",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 44,
+        "DESCRIPTION": "Sedative anticonvulsant : Phenytoin  Sodium Dilantin 250 mg / 5 ml",
+        "QTY": 1,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 45,
+        "DESCRIPTION": "Sedative anticonvulsant : Haloperidol Haldol 5mg/ml",
+        "QTY": 2,
+        "UNIT": "AMP"
+      },
+      {
+        "ITEM": 46,
+        "DESCRIPTION": "Sodium Chloride 0.9% 100ml",
+        "QTY": 3,
+        "UNIT": "BAG"
+      },
+      {
+        "ITEM": 47,
+        "DESCRIPTION": "Sterile Water 10cc",
+        "QTY": 1,
+        "UNIT": "AMP"
+      }
+    ],
+    "ORAL": [
+      {
+        "ITEM": 48,
+        "DESCRIPTION": "Acetyl salicylic acid : Aspirin tablet grain V",
+        "QTY": 10,
+        "UNIT": "TAB"
+      },
+      {
+        "ITEM": 49,
+        "DESCRIPTION": "Cetirizine syrup HCL 60ml - Child",
+        "QTY": 1,
+        "UNIT": "BOTTLE"
+      },
+      {
+        "ITEM": 50,
+        "DESCRIPTION": "Loratadine tablet 10mg",
+        "QTY": 10,
+        "UNIT": "TAB"
+      },
+      {
+        "ITEM": 51,
+        "DESCRIPTION": "Ropram Trimipramine 25 mg",
+        "QTY": 10,
+        "UNIT": "TAB"
+      },
+      {
+        "ITEM": 52,
+        "DESCRIPTION": "Nitroglycerine sublingual : Isordil tablet 5mg",
+        "QTY": 10,
+        "UNIT": "TAB"
+      },
+      {
+        "ITEM": 53,
+        "DESCRIPTION": "Oral beta-blocker : Atenolol 50mg Prenolol",
+        "QTY": 10,
+        "UNIT": "TAB"
+      }
+    ],
+    "SPRAY": [
+      {
+        "ITEM": 54,
+        "DESCRIPTION": "Salbutamol metered-dose inhaler",
+        "QTY": 1,
+        "UNIT": "EA"
+      }
+    ],
+    "OINTMENT": [
+      {
+        "ITEM": 55,
+        "DESCRIPTION": "Xylocaine Tropical Jelly 2% 30g",
+        "QTY": 1,
+        "UNIT": "TUBE"
+      }
+    ]
+  }
+}
