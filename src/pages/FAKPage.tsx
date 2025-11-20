@@ -23,7 +23,11 @@ const TEMPLATE_URL = '/report_FAK.xlsx';
 
 type FormState = Record<string, string>; // key: item5..item36
 
-export default function FAKPage() {
+interface FAKPageProps {
+  reportDate?: string;
+}
+
+export default function FAKPage({ reportDate }: FAKPageProps) {
   const [sn, setSN] = useState('');
   const [form, setForm] = useState<FormState>({});
   const [loading, setLoading] = useState(false);
@@ -39,10 +43,16 @@ useEffect(() => { fetchRows(); }, []);
 
 const fetchRows = async () => {
   setGridLoading(true);
-  const { data, error } = await supabase
-    .from('fak_items')
-    .select('sn')
-    .order('sn', { ascending: true });
+    let query = supabase
+      .from('fak_items')
+      .select('sn')
+      .order('sn', { ascending: true });
+
+    if (reportDate) {
+      query = query.eq('report_date', reportDate);
+    }
+
+    const { data, error } = await query;
   setGridLoading(false);
   if (error) { console.error(error); return; }
   const mapped = (data || []).map((r: any) => ({ id: r.sn, sn: r.sn }));
@@ -55,11 +65,16 @@ const fetchRows = async () => {
     if (!value) { alert('กรุณากรอก SN ก่อนค้นหา'); return; }
 
     setLoading(true);
-    const { data, error } = await supabase
+    let query = supabase
       .from('fak_items')
       .select('*')
-      .eq('sn', value)
-      .maybeSingle();
+      .eq('sn', value);
+
+    if (reportDate) {
+      query = query.eq('report_date', reportDate);
+    }
+
+    const { data, error } = await query.maybeSingle();
     setLoading(false);
 
     if (error) { alert(error.message); return; }
@@ -86,9 +101,12 @@ const fetchRows = async () => {
 
     setLoading(true);
     const payload: any = { sn: sn.trim() };
+    if (reportDate) {
+      payload.report_date = reportDate;
+    }
     for (let i = 5; i <= 36; i++) payload[`item${i}`] = form[`item${i}`] || null;
 
-     const { error } = await supabase.from('fak_items').upsert(payload, { onConflict: 'sn' });
+     const { error } = await supabase.from('fak_items').upsert(payload, { onConflict: 'sn, report_date' });
     setLoading(false);
     if (error) return alert(error.message);
     alert('บันทึกสำเร็จ');
@@ -98,7 +116,9 @@ const fetchRows = async () => {
   const onExportOne = async () => {
     if (!sn.trim()) return alert('กรุณากรอก SN');
     setLoading(true);
-    const { data, error } = await supabase.from('fak_items').select('*').eq('sn', sn.trim()).maybeSingle();
+    let query = supabase.from('fak_items').select('*').eq('sn', sn.trim());
+    if (reportDate) query = query.eq('report_date', reportDate);
+    const { data, error } = await query.maybeSingle();
     setLoading(false);
     if (error) return alert(error.message);
     if (!data) return alert('ไม่พบ SN นี้');
@@ -110,7 +130,9 @@ const fetchRows = async () => {
 
   const onExportAll = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from('fak_items').select('*');
+    let query = supabase.from('fak_items').select('*');
+    if (reportDate) query = query.eq('report_date', reportDate);
+    const { data, error } = await query;
     setLoading(false);
     if (error) return alert(error.message);
     const rows: FakRow[] = (data || []).map((r: any) => {
@@ -154,10 +176,16 @@ const deleteSN = async (snToDelete: string) => {
   // optimistic UI: ตัดออกก่อน เพื่อความไว
   setRows(prev => prev.filter(r => r.sn !== value));
 
-  const { error } = await supabase
-    .from('fak_items')
-    .delete()
-    .eq('sn', value);
+    let query = supabase
+      .from('fak_items')
+      .delete()
+      .eq('sn', value);
+
+    if (reportDate) {
+      query = query.eq('report_date', reportDate);
+    }
+
+    const { error } = await query;
 
   if (error) {
     alert('ลบไม่สำเร็จ: ' + error.message);
