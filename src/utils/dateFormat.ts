@@ -6,8 +6,8 @@ export function formatDDMMYYYYPartial(input: string) {
   // จัดวาง dd/MM/yyyy แบบเติม / อัตโนมัติเมื่อถึงตำแหน่ง
   let out = '';
   if (digits.length <= 2) out = digits;                           // d | dd
-  else if (digits.length <= 4) out = `${digits.slice(0,2)}/${digits.slice(2)}`;           // dd/m | dd/mm
-  else out = `${digits.slice(0,2)}/${digits.slice(2,4)}/${digits.slice(4)}`;              // dd/mm/y | dd/mm/yy..yyyy
+  else if (digits.length <= 4) out = `${digits.slice(0, 2)}/${digits.slice(2)}`;           // dd/m | dd/mm
+  else out = `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;              // dd/mm/y | dd/mm/yy..yyyy
 
   return out;
 }
@@ -35,12 +35,12 @@ export function parseDDMMYYYY(s: string): Date | null {
 
 // ต้อง “อนาคตเท่านั้น” (strictly > วันนี้)
 export function isFutureDateDDMMYYYY(s: string): boolean {
-//   const d = parseDDMMYYYY(s);
-//   if (!d) return false;
-//   const today = new Date();
-//   // เปรียบเทียบแบบ day-level: สิ้นสุดของวันนี้ยังไม่นับว่าอนาคต
-//   const endOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
-//   return d.getTime() > endOfToday.getTime();
+  //   const d = parseDDMMYYYY(s);
+  //   if (!d) return false;
+  //   const today = new Date();
+  //   // เปรียบเทียบแบบ day-level: สิ้นสุดของวันนี้ยังไม่นับว่าอนาคต
+  //   const endOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+  //   return d.getTime() > endOfToday.getTime();
 
   const d = parseDDMMYYYY(s);
   if (!d) return false;
@@ -49,4 +49,11 @@ export function isFutureDateDDMMYYYY(s: string): boolean {
   // วันที่ขั้นต่ำ = วันนี้ + 1 ปี (ไม่ต้องสนใจเวลา)
   const min = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
   return d.getTime() >= min.getTime();
+}
+
+// Format YYYY-MM-DD string to DD/MM/YYYY
+export function formatDDMMYYYY(isoDateString: string): string {
+  if (!isoDateString) return '';
+  const [yyyy, mm, dd] = isoDateString.split('-');
+  return `${dd}/${mm}/${yyyy}`;
 }

@@ -20,7 +20,11 @@ const TEMPLATE_URL = '/report_EMK.xlsx';
 
 type FormState = Record<string, string>; // key: item1..item51
 
-export default function EMKPage() {
+interface EMKPageProps {
+  reportDate?: string;
+}
+
+export default function EMKPage({ reportDate }: EMKPageProps) {
   const [sn, setSN] = useState('');
   const [form, setForm] = useState<FormState>({});
   const [loading, setLoading] = useState(false);
@@ -40,14 +44,20 @@ export default function EMKPage() {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [pendingDeleteSN, setPendingDeleteSN] = useState<string | null>(null);
 
-  useEffect(() => { fetchRows(); }, []);
+  useEffect(() => { fetchRows(); }, [reportDate]);
 
   const fetchRows = async () => {
     setGridLoading(true);
-    const { data, error } = await supabase
+    let query = supabase
       .from('emk_items')
       .select('sn')
       .order('sn', { ascending: true });
+
+    if (reportDate) {
+      query = query.eq('report_date', reportDate);
+    }
+
+    const { data, error } = await query;
     setGridLoading(false);
     if (error) { console.error(error); return; }
     const mapped = (data || []).map((r: any) => ({ id: r.sn, sn: r.sn }));
@@ -59,11 +69,16 @@ export default function EMKPage() {
     if (!value) { alert('กรุณากรอก SN ก่อนค้นหา'); return; }
 
     setLoading(true);
-    const { data, error } = await supabase
+    let query = supabase
       .from('emk_items')
       .select('*')
-      .eq('sn', value)
-      .maybeSingle();
+      .eq('sn', value);
+
+    if (reportDate) {
+      query = query.eq('report_date', reportDate);
+    }
+
+    const { data, error } = await query.maybeSingle();
     setLoading(false);
 
     if (error) { alert(error.message); return; }
@@ -89,9 +104,12 @@ export default function EMKPage() {
 
     setLoading(true);
     const payload: any = { sn: sn.trim() };
+    if (reportDate) {
+      payload.report_date = reportDate;
+    }
     for (let i = 1; i <= 51; i++) payload[`item${i}`] = form[`item${i}`] || null;
 
-     const { error } = await supabase.from('emk_items').upsert(payload, { onConflict: 'sn' });
+     const { error } = await supabase.from('emk_items').upsert(payload, { onConflict: 'sn, report_date' });
     setLoading(false);
     if (error) return alert(error.message);
     alert('บันทึกสำเร็จ');
@@ -101,7 +119,9 @@ export default function EMKPage() {
   const onExportOne = async () => {
     if (!sn.trim()) return alert('กรุณากรอก SN');
     setLoading(true);
-    const { data, error } = await supabase.from('emk_items').select('*').eq('sn', sn.trim()).maybeSingle();
+    let query = supabase.from('emk_items').select('*').eq('sn', sn.trim());
+    if (reportDate) query = query.eq('report_date', reportDate);
+    const { data, error } = await query.maybeSingle();
     setLoading(false);
     if (error) return alert(error.message);
     if (!data) return alert('ไม่พบ SN นี้');
@@ -113,7 +133,9 @@ export default function EMKPage() {
 
   const onExportAll = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from('emk_items').select('*');
+    let query = supabase.from('emk_items').select('*');
+    if (reportDate) query = query.eq('report_date', reportDate);
+    const { data, error } = await query;
     setLoading(false);
     if (error) return alert(error.message);
     const rows: EmkRow[] = (data || []).map((r: any) => {
@@ -123,6 +145,41 @@ export default function EMKPage() {
     });
     if (!rows.length) return alert('ยังไม่มีข้อมูล');
     await exportAllSN(TEMPLATE_URL, rows);
+  };
+
+  const deleteSN = async (snToDelete: string) => {
+    const value = snToDelete.trim();
+    if (!value) return;
+
+    // optimistic UI
+    setRows(prev => prev.filter(r => r.sn !== value));
+
+    let query = supabase
+      .from('emk_items')
+      .delete()
+      .eq('sn', value);
+
+    if (reportDate) {
+      query = query.eq('report_date', reportDate);
+    }
+
+    const { error } = await query;
+
+    if (error) {
+      alert('ลบไม่สำเร็จ: ' + error.message);
+      await fetchRows();
+      return;
+    }
+
+    if (sn.trim() === value) {
+      setSN('');
+      const cleared: Record<string, string> = {};
+      for (let i = 1; i <= 51; i++) cleared[`item${i}`] = '';
+      setForm(cleared);
+    }
+
+    setConfirmOpen(false);
+    setPendingDeleteSN(null);
   };
 
   const columns: GridColDef<RowLite>[] = [
@@ -148,34 +205,6 @@ export default function EMKPage() {
       ],
     },
   ];
-
-  const deleteSN = async (snToDelete: string) => {
-    const value = snToDelete.trim();
-    if (!value) return;
-
-    setRows(prev => prev.filter(r => r.sn !== value));
-
-    const { error } = await supabase
-      .from('emk_items')
-      .delete()
-      .eq('sn', value);
-
-    if (error) {
-      alert('ลบไม่สำเร็จ: ' + error.message);
-      await fetchRows();
-      return;
-    }
-
-    if (sn.trim() === value) {
-      setSN('');
-      const cleared: Record<string, string> = {};
-      for (let i = 1; i <= 51; i++) cleared[`item${i}`] = '';
-      setForm(cleared);
-    }
-
-    setConfirmOpen(false);
-    setPendingDeleteSN(null);
-  };
 
   const renderInputGroup = (title: string, items: typeof EMK_EQUIPMENT) => (
     <Box sx={{ p:2, border: '1px solid', borderColor: 'divider', borderRadius: 2, bgcolor: 'background.paper', mb: 2 }}>
