@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมฝึกสมอง: นับจำนวน</title>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #game-container {
+            background-color: #ffffff;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: row;
+            width: 90vw;
+            max-width: 1024px;
+            height: 80vh;
+            gap: 40px;
+        }
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-right: 4px dashed #b2ebf2;
+            padding-right: 40px;
+        }
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+        }
+        h1 { color: #00796b; font-size: 48px; margin-bottom: 10px; text-align: center;}
+        p { color: #555555; font-size: 24px; margin-top: 0; text-align: center;}
+        #objects-display {
+            font-size: 80px;
+            margin: 30px auto;
+            min-height: 240px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        input[type="text"] {
+            font-size: 70px;
+            width: 150px;
+            text-align: center;
+            border: 6px solid #00acc1;
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 30px;
+            color: #333333;
+            background-color: #fafafa;
+            pointer-events: none; 
+        }
+        /* Numpad Styles */
+        #numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 20px;
+        }
+        .num-btn, .action-btn {
+            font-size: 48px;
+            font-weight: bold;
+            border: none;
+            height: 100px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+            transition: transform 0.1s;
+            touch-action: manipulation; 
+        }
+        .num-btn { background-color: #4dd0e1; color: white; }
+        .num-btn:active { transform: scale(0.95); background-color: #00bcd4; }
+        .action-btn.submit { background-color: #ff9800; color: white; grid-column: span 3; font-size: 40px; height: 90px; margin-top: 10px;}
+        .action-btn.submit:active { transform: scale(0.95); background-color: #f57c00; }
+        
+        #feedback {
+            font-size: 36px;
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div class="left-panel">
+        <h1>มีสัตว์กี่ตัวเอ่ย?</h1>
+        <div id="objects-display"></div>
+        <div id="feedback"></div>
+    </div>
+    
+    <div class="right-panel">
+        <input type="text" id="answer-input" placeholder="?" readonly>
+        <div id="numpad">
+            <button class="num-btn" onclick="inputNumber(1)">1</button>
+            <button class="num-btn" onclick="inputNumber(2)">2</button>
+            <button class="num-btn" onclick="inputNumber(3)">3</button>
+            <button class="num-btn" onclick="inputNumber(4)">4</button>
+            <button class="num-btn" onclick="inputNumber(5)">5</button>
+            <button class="num-btn" onclick="inputNumber(6)">6</button>
+            <button class="num-btn" onclick="inputNumber(7)">7</button>
+            <button class="num-btn" onclick="inputNumber(8)">8</button>
+            <button class="num-btn" onclick="inputNumber(9)">9</button>
+            <button class="action-btn submit" onclick="checkAnswer()">ตอบ!</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const emojis = ['🐶', '🐱', '🐼', '🐰', '🦊', '🐸'];
+    let currentCount = 0;
+    let numberPool = [];
+    let lastNumber = 0;
+
+    function getNextUniqueNumber() {
+        if (numberPool.length === 0) {
+            for (let i = 1; i <= 9; i++) numberPool.push(i);
+            do {
+                for (let i = numberPool.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [numberPool[i], numberPool[j]] = [numberPool[j], numberPool[i]];
+                }
+            } while (numberPool[numberPool.length - 1] === lastNumber);
+        }
+        lastNumber = numberPool.pop();
+        return lastNumber;
+    }
+
+    function generateQuestion() {
+        const display = document.getElementById('objects-display');
+        document.getElementById('answer-input').value = '';
+        document.getElementById('feedback').innerHTML = '';
+
+        currentCount = getNextUniqueNumber();
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        let emojiString = '';
+        for (let i = 0; i < currentCount; i++) {
+            emojiString += `<span>${randomEmoji}</span>`;
+        }
+        display.innerHTML = emojiString;
+    }
+
+    function inputNumber(num) {
+        document.getElementById('answer-input').value = num;
+    }
+
+    function checkAnswer() {
+        const userAnswer = parseInt(document.getElementById('answer-input').value);
+        const feedback = document.getElementById('feedback');
+
+        if (isNaN(userAnswer)) {
+            feedback.style.color = '#ff9800';
+            feedback.innerHTML = 'กดตัวเลขก่อนนะครับ';
+            return;
+        }
+
+        if (userAnswer === currentCount) {
+            feedback.style.color = '#4CAF50';
+            feedback.innerHTML = 'เก่งมาก! 🌟 ถูกต้อง';
+            setTimeout(generateQuestion, 2000);
+        } else {
+            feedback.style.color = '#F44336';
+            feedback.innerHTML = 'ลองนับใหม่อีกครั้งนะ';
+            document.getElementById('answer-input').value = '';
+        }
+    }
+
+    window.onload = generateQuestion;
+</script>
+
+</body>
+</html>
