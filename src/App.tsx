@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Container, Box, CssBaseline, Typography } from '@mui/material';
 
 import FAKPage from './pages/FAKPage';
