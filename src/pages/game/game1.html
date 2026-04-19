@@ -128,9 +128,27 @@
 
 <script>
     const emojis = ['🐶', '🐱', '🐼', '🐰', '🦊', '🐸'];
+    const SOUND_SOURCES = {
+        success: './sounds/success-placeholder.wav',
+        failure: './sounds/failure-placeholder.wav'
+    };
+    const feedbackSounds = {
+        success: new Audio(SOUND_SOURCES.success),
+        failure: new Audio(SOUND_SOURCES.failure)
+    };
     let currentCount = 0;
     let numberPool = [];
     let lastNumber = 0;
+
+    function playFeedbackSound(type) {
+        const audio = feedbackSounds[type];
+        if (!audio) return;
+        audio.currentTime = 0;
+        const playPromise = audio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+        }
+    }
 
     function getNextUniqueNumber() {
         if (numberPool.length === 0) {
@@ -176,10 +194,12 @@
         }
 
         if (userAnswer === currentCount) {
+            playFeedbackSound('success');
             feedback.style.color = '#4CAF50';
             feedback.innerHTML = 'เก่งมาก! 🌟 ถูกต้อง';
             setTimeout(generateQuestion, 2000);
         } else {
+            playFeedbackSound('failure');
             feedback.style.color = '#F44336';
             feedback.innerHTML = 'ลองนับใหม่อีกครั้งนะ';
             document.getElementById('answer-input').value = '';

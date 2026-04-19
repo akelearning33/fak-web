@@ -149,8 +149,26 @@
 </div>
 
 <script>
+    const SOUND_SOURCES = {
+        success: './sounds/success-placeholder.wav',
+        failure: './sounds/failure-placeholder.wav'
+    };
+    const feedbackSounds = {
+        success: new Audio(SOUND_SOURCES.success),
+        failure: new Audio(SOUND_SOURCES.failure)
+    };
     let questionsPool = [];
     let currentCorrectAnswer = 0;
+
+    function playFeedbackSound(type) {
+        const audio = feedbackSounds[type];
+        if (!audio) return;
+        audio.currentTime = 0;
+        const playPromise = audio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+        }
+    }
 
     function initializePool() {
         questionsPool = [];
@@ -202,10 +220,12 @@
         }
 
         if (userAnswer === currentCorrectAnswer) {
+            playFeedbackSound('success');
             feedback.style.color = '#4CAF50';
             feedback.innerHTML = 'เก่งมาก! 🌟 ยอดเยี่ยม';
             setTimeout(generateQuestion, 2000);
         } else {
+            playFeedbackSound('failure');
             feedback.style.color = '#F44336';
             feedback.innerHTML = 'ลองบวกใหม่อีกครั้งนะ';
             clearNumber(); 
